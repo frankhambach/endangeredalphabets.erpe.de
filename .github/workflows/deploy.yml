@@ -29,8 +29,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-php-
 
-      - name: Install dependencies
+      - name: Install PHP dependencies
         run: composer install --prefer-dist --no-progress
+
+      - name: Install Javascript dependencies
+        run: npm install
+
+      - name: Build Javascript
+        run: npm run build
 
       - name: Run test suite
         run: php artisan test
